@@ -1,0 +1,36 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: todo-backend
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/todo_list?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:210103137}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: Asia/Shanghai
+
+# JWT 配置
+app:
+  jwt:
+    # 生产环境务必改为随机长字符串（>= 32 字节），并通过环境变量注入
+    secret: ${JWT_SECRET:TodoListSecretKeyChangeMeInProduction0123456789abcdef}
+    # token 有效期（毫秒），默认 24 小时
+    expiration: 86400000
+
+logging:
+  level:
+    root: info
+    com.todolist: debug
