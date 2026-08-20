@@ -1,7 +1,7 @@
 # ============================================
 # 阶段一：使用 Eclipse Temurin JDK 1.8 作为构建环境
 # ============================================
-FROM maven:3.9-eclipse-temurin-17-alpine AS builder
+FROM maven:3.9-eclipse-temurin-17 AS builder
 
 # 设置工作目录
 WORKDIR /app
@@ -26,7 +26,7 @@ RUN ./mvnw clean package -DskipTests
 # ============================================
 # 阶段二：使用更小的 JRE 镜像运行（多阶段构建）
 # ============================================
-FROM eclipse-temurin:17-jre-alpine
+FROM eclipse-temurin:17-jre
 
 # 设置工作目录
 WORKDIR /app
