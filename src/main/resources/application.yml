@@ -5,10 +5,26 @@ spring:
   application:
     name: todo-backend
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/todo_list?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    url: "${MySQL_URL:jdbc:mysql://localhost:3306/todolist?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true}"
     username: ${DB_USERNAME:root}
     password: ${DB_PASSWORD:210103137}
     driver-class-name: com.mysql.cj.jdbc.Driver
+
+      # Hikari 连接池配置（针对免费主机的优化）
+    hikari:
+      # 连接池最大连接数（免费主机通常限制 3-10 个并发，设小一点）
+      maximum-pool-size: 3
+      # 最小空闲连接
+      minimum-idle: 1
+      # 连接超时（免费主机响应慢，设长一点）
+      connection-timeout: 30000
+      # 空闲连接超时
+      idle-timeout: 600000
+      # 连接最大存活时间
+      max-lifetime: 1800000
+      # 测试连接的 SQL
+      connection-test-query: SELECT 1
+
   jpa:
     hibernate:
       ddl-auto: update
@@ -17,6 +33,7 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
+        # 格式化 SQL（开发时方便看）
         format_sql: true
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
