@@ -43,6 +43,18 @@ public class User implements UserDetails {
     @Column(length = 50)
     private String nickname;
 
+    /** 头像（base64 图片数据） */
+    @Column(columnDefinition = "LONGTEXT")
+    private String avatar;
+
+    /** 手机号（可空，用于改密码验证） */
+    @Column(length = 20)
+    private String phone;
+
+    /** 邮箱（可空） */
+    @Column(length = 100)
+    private String email;
+
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
