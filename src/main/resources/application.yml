@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: todo-backend
+    name: todolist-backend
   datasource:
     url: "${MySQL_URL:jdbc:mysql://localhost:3306/todolist?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true}"
     username: ${DB_USERNAME:root}
