@@ -12,9 +12,9 @@
     </parent>
 
     <groupId>com.todolist</groupId>
-    <artifactId>todo-backend</artifactId>
+    <artifactId>todolist-backend</artifactId>
     <version>1.0.0</version>
-    <name>todo-backend</name>
+    <name>todolist-backend</name>
     <description>Todo List backend (Spring Boot + JWT + MySQL)</description>
 
     <properties>
